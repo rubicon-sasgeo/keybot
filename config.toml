@@ -1,0 +1,9 @@
+botname = "grinder"
+
+[default]
+bot_folder = "./bots"
+bot_file_name = "sim_sample.json"
+interval_ms = 15 # 0 or negative value to skip waiting between key entries
+
+[debug]
+logging = true

@@ -1,0 +1,7 @@
+{
+  "botname": "grinder_sample",
+  "window_name": "notepad",
+  "loop": "10",
+  "keys": ["a", "b", "ctrl+v"],
+  "interval_ms": 1000
+}
