@@ -2,7 +2,6 @@ import os
 from dataclasses import dataclass
 import json
 from time import sleep
-from colorama import (Fore, Style)
 import config
 import bots.windows as windows
 
@@ -49,33 +48,32 @@ class KeySeq:
         conf = config.conf.get_config()
         logging = bool(conf['debug']['logging'])
         if logging:
-            print(Fore.GREEN + f'========== Bot Starts ==========')
+            print(f'========== Bot Starts ==========')
 
         qty = self.loop if self.must_loop() else 0
         for i in range(qty):
-            print(Fore.BLUE + f'--- Round #{i} ---')
+            print(f'--- Round #{i} ---')
             (lines, wait_ms, index) = self.get_sub_seq(0)
             while(lines is not None):
                 windows.sendkeys(self.window_name, lines)
                 if logging:
-                    print(Fore.GREEN + f'sent [{lines}]...')
+                    print(f'sent [{lines}]...')
                     if(wait_ms > 0):
-                        print(Fore.GREEN + f'wait for [{wait_ms}] ms...')
+                        print(f'wait for [{wait_ms}] ms...')
                         sleep(wait_ms)
                     else:
-                        print(Fore.GREEN + f'No wait specified...')
+                        print(f'No wait specified...')
 
                 (lines, wait_ms, index) = self.get_sub_seq(index)
 
             if self.interval_ms > 0:
                 if logging:
-                    print(Fore.GREEN +
-                          f'-- sleeping for {self.interval_ms} ms...')
+                    print(f'-- sleeping for {self.interval_ms} ms...')
                 sleep(float(self.interval_ms) / 1000.0)
             print('\r\n')
 
         if logging:
-            print(Fore.GREEN + f'========== Bot Ends ==========')
+            print(f'========== Bot Ends ==========')
         pass
 
     def get_sub_seq(self, index: int):
