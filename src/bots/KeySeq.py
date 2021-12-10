@@ -48,7 +48,7 @@ class KeySeq:
         conf = config.conf.get_config()
         logging = bool(conf['debug']['logging'])
         if logging:
-            print(f'========== Bot Starts ==========')
+            print(f'========== Bot Initiated ==========')
 
         qty = self.loop if self.must_loop() else 0
         for i in range(qty):
@@ -60,7 +60,7 @@ class KeySeq:
                     print(f'sent [{lines}]...')
                     if(wait_ms > 0):
                         print(f'wait for [{wait_ms}] ms...')
-                        sleep(wait_ms)
+                        KeySeq.wait_for_ms(wait_ms)
                     else:
                         print(f'No wait specified...')
 
@@ -69,11 +69,11 @@ class KeySeq:
             if self.interval_ms > 0:
                 if logging:
                     print(f'-- sleeping for {self.interval_ms} ms...')
-                sleep(float(self.interval_ms) / 1000.0)
+                KeySeq.wait_for_ms(self.interval_ms)
             print('\r\n')
 
         if logging:
-            print(f'========== Bot Ends ==========')
+            print(f'========== Bot Dissolved ==========')
         pass
 
     def get_sub_seq(self, index: int):
@@ -89,3 +89,7 @@ class KeySeq:
             lines.append(self.keys[index])
 
         return (lines, wait_ms, index + 1)
+
+    @classmethod
+    def wait_for_ms(cls, duration_ms) -> None:
+        sleep(float(duration_ms) / 1000.0)

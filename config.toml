@@ -6,7 +6,7 @@ bot_file_name = "sim_sample.json"
 interval_ms = 15 # 0 or negative value to skip waiting between key entries
 
 [debug]
-logging = false
+logging = true
 
 [special_keys]
 # {SCROLLLOCK}, {VK_SPACE}, {VK_LSHIFT}, {VK_PAUSE}, {VK_MODECHANGE},
