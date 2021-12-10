@@ -1,3 +1,3 @@
-from . import (KeySeq)
+from . import (KeySeq, windows)
 
-__main__ = ['KeySeq']
+__main__ = ['KeySeq', 'windows']

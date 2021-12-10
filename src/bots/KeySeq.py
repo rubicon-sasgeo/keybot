@@ -1,10 +1,10 @@
 import os
 from dataclasses import dataclass
 import json
-import ctypes
 from time import sleep
 from colorama import (Fore, Style)
 import config
+import bots.windows as windows
 
 
 @dataclass
@@ -51,21 +51,43 @@ class KeySeq:
         if logging:
             print(Fore.GREEN + f'========== Bot Starts ==========')
 
-        MessageBox = ctypes.windll.user32.MessageBoxW
         qty = self.loop if self.must_loop() else 0
         for i in range(qty):
             print(Fore.BLUE + f'--- Round #{i} ---')
-            for j in range(len(self.keys)):
-                MessageBox(None, self.keys[j], self.window_name, 0)
+            (lines, wait_ms, index) = self.get_sub_seq(0)
+            while(lines is not None):
+                windows.sendkeys(self.window_name, lines)
                 if logging:
-                    print(Fore.GREEN + f'sent [{self.keys[j]}]...')
-                if self.interval_ms > 0:
-                    if logging:
-                        print(Fore.GREEN +
-                              f'-- sleeping for {self.interval_ms} ms...')
-                    sleep(float(self.interval_ms) / 1000.0)
+                    print(Fore.GREEN + f'sent [{lines}]...')
+                    if(wait_ms > 0):
+                        print(Fore.GREEN + f'wait for [{wait_ms}] ms...')
+                        sleep(wait_ms)
+                    else:
+                        print(Fore.GREEN + f'No wait specified...')
+
+                (lines, wait_ms, index) = self.get_sub_seq(index)
+
+            if self.interval_ms > 0:
+                if logging:
+                    print(Fore.GREEN +
+                          f'-- sleeping for {self.interval_ms} ms...')
+                sleep(float(self.interval_ms) / 1000.0)
             print('\r\n')
 
         if logging:
             print(Fore.GREEN + f'========== Bot Ends ==========')
         pass
+
+    def get_sub_seq(self, index: int):
+        if(index >= len(self.keys)):
+            return (None, None, None)
+
+        lines = []
+        wait_ms = 0
+        for index in range(index, len(self.keys)):
+            if type(self.keys[index]) == int:
+                wait_ms = int(self.keys[index])
+                break
+            lines.append(self.keys[index])
+
+        return (lines, wait_ms, index + 1)

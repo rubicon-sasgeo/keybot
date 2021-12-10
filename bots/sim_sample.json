@@ -2,6 +2,15 @@
   "botname": "grinder_sample",
   "window_name": "notepad",
   "loop": "10",
-  "keys": ["a", "b", "ctrl+v"],
-  "interval_ms": 1000
+  "keys": [
+    "--start--{ENTER 2}",
+    "a",
+    "b",
+    "^v",
+    "{ENTER 2}--end--{ENTER 2}",
+    "wait 1000ms",
+    1000,
+    "{ENTER 2}////// interval 3000ms //////{ENTER 2}"
+  ],
+  "interval_ms": 3000
 }
