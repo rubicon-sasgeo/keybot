@@ -1,9 +1,11 @@
 from . import (
     cmd_line,
-    conf
+    conf,
+    bot_conf
 )
 
 __all__ = [
     'cmd_line',
-    'conf'
+    'conf',
+    'bot_conf'
 ]

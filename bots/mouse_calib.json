@@ -1,0 +1,21 @@
+{
+  "botname": "mouse_location_calibration",
+  "window_name": "paint",
+  "loop": "10",
+  "keys": [
+    "{MOUSE_LEFT}200,400",
+    "200,400",
+    "{MOUSE_LEFT}180,380",
+
+    "{MOUSE_LEFT}1000,600",
+    "1000,600",
+    "{MOUSE_LEFT}980,580",
+
+    "{MOUSE_LEFT}1830,610",
+    "X"
+  ],
+  "init_wait_ms": 5000,
+  "interval_ms": 100,
+  "loop_interval_ms": 8000,
+  "random_internval_ms": 3000
+}

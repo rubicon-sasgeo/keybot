@@ -1,0 +1,9 @@
+{
+  "botname": "web_browser",
+  "window_name": "national",
+  "loop": "20",
+  "keys": ["{MOUSE_LEFT}1830,610", "X"],
+  "interval_ms": 100,
+  "loop_interval_ms": 65000,
+  "random_internval_ms": 5000
+}
